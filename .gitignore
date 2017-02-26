@@ -1,0 +1,12 @@
+/.vs
+/Build
+/Binaries
+/Content/Developers
+/DerivedDataCache
+/Intermediate
+/Saved
+*.opendb
+*.sln
+*.sdf
+*.suo
+*.db
