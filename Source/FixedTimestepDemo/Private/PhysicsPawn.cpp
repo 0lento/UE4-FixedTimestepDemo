@@ -61,14 +61,13 @@ void APhysicsPawn::PhysSceneStep(FPhysScene* PhysScene, uint32 SceneType, float 
 	if (PhysicsStepCount)
 	{
 		PhysicsPostStep(DeltaTime);
-		PhysicsStepCount++;
 	}
+	PhysicsStepCount++;
 	PhysicsStep(DeltaTime);
 }
 
 void APhysicsPawn::PostPhysicsTick(float DeltaTime, ELevelTick TickType, FPostPhysicsTickFunction& TickFunction)
 {
-	PhysicsStepCount++;
 	PhysicsPostStep(DeltaTime); // Run PhysScenePostTick for the last physics step
 	PhysicsPostSim(DeltaTime);
 }
