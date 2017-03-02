@@ -34,7 +34,12 @@ class FIXEDTIMESTEPDEMO_API APhysicsPawn : public APawn
 public:
 	APhysicsPawn();
 	void PostPhysicsTick(float DeltaTime, ELevelTick TickType, FPostPhysicsTickFunction& TickFunction);
-	uint32 FORCEINLINE APhysicsPawn::GetPhysicsStepCount() { return PhysicsStepCount; }
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Physics")
+	int32 GetPhysicsStepNum() { return PhysicsStepNum; }
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics")
+	bool DispatchPhysNotifications = true;
 
 private:
 	FDelegateHandle OnPhysScenePreTickHandle;
@@ -43,7 +48,7 @@ private:
 	void PhysSceneStep(FPhysScene* PhysScene, uint32 SceneType, float DeltaTime);
 
 	UPROPERTY()
-	uint32 PhysicsStepCount;
+	int32 PhysicsStepNum;
 
 protected:
 	FPostPhysicsTickFunction PostPhysicsTickFunction;

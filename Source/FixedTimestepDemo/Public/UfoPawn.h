@@ -29,9 +29,9 @@ protected:
 
 public:
 	
-	UPROPERTY(EditAnywhere, Category = "Main Body")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Main Body")
 	UStaticMeshComponent* RootMesh;
-	UPROPERTY(EditAnywhere, Category = "Main Body")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Main Body")
 	UStaticMeshComponent* ExtraMesh;
 
 	UPROPERTY(EditAnywhere, Category = "Setup")

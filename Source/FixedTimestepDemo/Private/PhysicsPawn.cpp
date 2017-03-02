@@ -51,18 +51,22 @@ FString FPostPhysicsTickFunction::DiagnosticMessage()
 
 void APhysicsPawn::PhysScenePreTick(FPhysScene* PhysScene, uint32 SceneType, float DeltaTime)
 {
-	PhysicsStepCount = 0;
+	PhysicsStepNum = 0;
 	PhysicsPreSim(DeltaTime);
 }
 
 void APhysicsPawn::PhysSceneStep(FPhysScene* PhysScene, uint32 SceneType, float DeltaTime)
 {
 	// If not the first physics step, make sure to run previous steps post step before new one
-	if (PhysicsStepCount)
+	if (PhysicsStepNum)
 	{
 		PhysicsPostStep(DeltaTime);
+		if (DispatchPhysNotifications)
+		{
+			GetWorld()->GetPhysicsScene()->DispatchPhysNotifications_AssumesLocked();
+		}
 	}
-	PhysicsStepCount++;
+	PhysicsStepNum++;
 	PhysicsStep(DeltaTime);
 }
 
